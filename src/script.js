@@ -40,6 +40,7 @@ const renderBackground = () => {
 	});
 };
 
+let fadedOut = false;
 const renderTime = () => {
 	const now = new Date();
 
@@ -67,11 +68,14 @@ const renderTime = () => {
 		range = "night";
 	}
 
-	$("#time").fadeIn("slow", () => {
-		$("#hour").text(hours);
-		$("#colon").fadeToggle(1000, "swing");
-		$("#minute").text(mins);
-		$("#greeting").text(`Good ${range}, ${USER} :)`);
-	});
+	$("#hour").text(hours);
+	if (fadedOut) {
+		$("#colon").animate({opacity: 1}, 500);
+	} else {
+		$("#colon").animate({opacity: 0}, 500);
+	}
+	fadedOut = !fadedOut;
+	$("#minute").text(mins);
+	$("#greeting").text(`Good ${range}, ${USER} :)`);
 };
 
