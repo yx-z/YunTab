@@ -3,8 +3,13 @@
   "name": "Cloud's New Tab",
   "version": "0.1",
   "description": "Made with 💗 by Yun",
+  "icons": {
+	"16": "res/icon16.png",
+	"48": "res/icon48.png",
+	"128": "res/icon128.png"
+  },
   "chrome_url_overrides": {
-	"newtab": "index.html"
+	"newtab": "src/index.html"
   },
   "permissions": [
 	"storage",

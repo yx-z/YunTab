@@ -33,7 +33,7 @@ const renderBackground = () => {
 				});
 			}).catch(() => {
 				console.log("fetch failed. load default background.");
-				$("#screen").css("background-image", `url(background.jpg)`);
+				$("#screen").css("background-image", "url(res/background.jpg)");
 			});
 		}
 	});
@@ -45,6 +45,9 @@ const renderTime = () => {
 	let hours = now.getHours();
 	let mins = now.getMinutes();
 
+	if (hours < 7) {
+		sal = "night";
+	}
 	if (hours > 12) {
 		sal = "afternoon";
 	}
