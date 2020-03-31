@@ -4,9 +4,10 @@
   "version": "0.1",
   "description": "Made with 💗 by Yun",
   "chrome_url_overrides": {
-    "newtab": "index.html"
+	"newtab": "index.html"
   },
   "permissions": [
-    "activeTab"
+	"storage",
+	"bookmarks"
   ]
 }
