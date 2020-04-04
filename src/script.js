@@ -23,8 +23,8 @@ const renderBackground = () => {
 			$("#screen").css("background-image", `url(${res.backgroundUrl})`);
 		} else {
 			let url = `https://api.unsplash.com/search/photos?page=${days}&per_page=1&query=cloud&client_id=b12d733c058d96a9241a5829b3a0bd86d902b0fca341420773d51c9f2ce632d8`;
-			fetch(url).then(res => {
-				let src = res.json()["results"][0]["urls"]["regular"];
+			fetch(url).then(res => res.json()).then(json => {
+				let src = json["results"][0]["urls"]["regular"];
 				chrome.storage.sync.set({
 					"backgroundDays": days,
 					"backgroundUrl": src
@@ -34,7 +34,7 @@ const renderBackground = () => {
 				});
 			}).catch(() => {
 				console.log("fetch failed. load default background.");
-				$("#screen").css("background-image", "url(res/background.jpg)");
+				$("#screen").css("background-image", "url(../res/background.jpg)");
 			});
 		}
 	});
