@@ -1,6 +1,6 @@
-const USER = "Angela";
-const BACKGROUND_START_DATE = new Date("Mar 26, 2020");
+const USER = "David";
 
+const BACKGROUND_START_DATE = new Date("Mar 26, 2020");
 $(document).ready(() => {
 	renderBackground();
 
@@ -8,9 +8,7 @@ $(document).ready(() => {
 	renderTime();
 	setInterval(renderTime, 1000);
 
-	chrome.bookmarks.getTree((res) => {
-		console.log(res);
-	});
+	renderBookmarks();
 });
 
 const renderBackground = () => {
@@ -20,7 +18,7 @@ const renderBackground = () => {
 		console.log(`cached days: ${res.backgroundDays}`);
 		if (res.backgroundDays === days) {
 			console.log(`load cached background: ${res.backgroundUrl}`);
-			$("#screen").css("background-image", `url(${res.backgroundUrl})`);
+			$("#background").css("background-image", `url(${res.backgroundUrl})`);
 		} else {
 			let url = `https://api.unsplash.com/search/photos?page=${days}&per_page=1&query=cloud&client_id=b12d733c058d96a9241a5829b3a0bd86d902b0fca341420773d51c9f2ce632d8`;
 			fetch(url).then(res => res.json()).then(json => {
@@ -30,11 +28,11 @@ const renderBackground = () => {
 					"backgroundUrl": src
 				}, () => {
 					console.log("fetch succeeded.");
-					$("#screen").css("background-image", `url(${src})`)
+					$("#background").css("background-image", `url(${src})`)
 				});
 			}).catch(() => {
 				console.log("fetch failed. load default background.");
-				$("#screen").css("background-image", "url(../res/background.jpg)");
+				$("#background").css("background-image", "url(../res/background.jpg)");
 			});
 		}
 	});
@@ -79,3 +77,8 @@ const renderTime = () => {
 	$("#greeting").text(`Good ${range}, ${USER} :)`);
 };
 
+const renderBookmarks = () => {
+	chrome.bookmarks.getTree((res) => {
+		console.log(res);
+	});
+};
