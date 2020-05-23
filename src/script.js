@@ -12,7 +12,7 @@ $(document).ready(() => {
 });
 
 const renderBackground = () => {
-	let days = Math.trunc(Math.floor(new Date().getTime() - BACKGROUND_START_DATE.getTime()) / (1000 * 60 * 60 * 24));
+	let days = Math.trunc((new Date().getTime() - BACKGROUND_START_DATE.getTime()) / (1000 * 60 * 60 * 24));
 	console.log(`current days: ${days}`);
 	chrome.storage.sync.get(["backgroundUrl", "backgroundDays"], (res) => {
 		console.log(`cached days: ${res.backgroundDays}`);
